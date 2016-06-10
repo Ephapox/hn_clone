@@ -16,10 +16,14 @@ export default class NewsService {
 	}
 	getStories(storyIds, limit = 5) {
 		const that = this;
-		const promiseArray = storyIds.data.filter((id, idx) => {
-			if(idx > limit) return false;
-			return true;
-		}).map(id => that.$http.get(`${storyUrl + id}.json`));
+		const promiseArray = storyIds.data
+				.filter((id, idx) => {
+					if(idx > limit) return false;
+					return true;
+				})
+				.map(id => {
+					return that.$http.get(`${storyUrl + id}.json`)
+				});
 		return Promise.all(promiseArray);
 	}
 }

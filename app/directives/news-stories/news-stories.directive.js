@@ -12,12 +12,11 @@ function newsStories() {
 				
 		},
 		controller: ["$scope", 'NewsService', "$attrs", function($scope, NewsService, attrs) {
-			const type = attrs.type;
-			const limit = attrs.limit;
-
-			NewsService[type]()
-				.then(storyIds => NewsService.getStories.call(NewsService, storyIds, limit))
-				.then(stories => $scope.news.stories = stories);
+			$scope.$watch('type', function(newVal){
+				NewsService[newVal]()
+					.then(storyIds => NewsService.getStories.call(NewsService, storyIds, $scope.limit))
+					.then(stories => $scope.news.stories = stories);
+			})
 		}],
 		controllerAs: 'news'
 	}
