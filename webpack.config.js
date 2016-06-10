@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 var ENTRY_PATH = path.resolve('./app');
 var BUILD_PATH = path.resolve('./app/build');
-var PUBLIC_PATH = '/public/assets';
+var PUBLIC_PATH = '/public/assets/';
 
 module.exports = {
 	context: ENTRY_PATH,
