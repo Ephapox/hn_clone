@@ -1,8 +1,10 @@
-let configs = function($urlRouterProvider, $locationProvider) {
-	$locationProvider.html5Mode(true);
-	$urlRouterProvider.otherwise('/');
-}
-
-configs.$inject = ['$urlRouterProvider', '$locationProvider'];
+let configs = [
+	'$urlRouterProvider', 
+	'$locationProvider', 
+	function($urlRouterProvider, $locationProvider) {
+		$locationProvider.html5Mode(true);
+		$urlRouterProvider.otherwise('/');
+	}
+];
 
 export default configs;
