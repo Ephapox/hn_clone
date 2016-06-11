@@ -1,5 +1,5 @@
 import userDisplayCss from './user-display.sass';
-import NewsService from './../../services/NewsService/NewsService';
+import NewsServiceDep from './../../services/NewsService/NewsService';
 
 function userDisplay(NewsService) {
 	return {
@@ -20,6 +20,6 @@ function userDisplay(NewsService) {
 	}
 }
 
-export default angular.module('directives.userDisplay', [NewsService])
-	.directive('userDisplay', userDisplay)
+export default angular.module('directives.userDisplay', [NewsServiceDep])
+	.directive('userDisplay', ['NewsService', userDisplay])
 	.name;
