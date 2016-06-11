@@ -8,12 +8,14 @@ var PUBLIC_PATH = '/build/';
 module.exports = {
 	context: ENTRY_PATH,
 	entry: {
-		app: './app'
+		angular: 'angular',
+		app: './app',
+		'angular-ui-router': 'angular-ui-router'
 	},
 	output: {
 		path: BUILD_PATH,
 		publicPath: PUBLIC_PATH,
-		filename: 'bundle.js'
+		filename: '[name].js'
 	},
 	module: {
 		loaders: [

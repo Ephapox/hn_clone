@@ -1,4 +1,3 @@
-import angular from 'angular';
 import newsStories from './../news-stories/news-stories.directive';
 import userDisplay from './../user-display/user-display.directive';
 
