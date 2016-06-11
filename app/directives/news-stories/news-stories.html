@@ -1,8 +1,9 @@
 <div>
 	<div class="news_stories_contianer">
-		<div class="news_story" ng-repeat='news in news.stories'>
-			<h5>{{news.data.by}}</h5>
-			<p>{{news.data.title}}</p>
+		<div class="news_story" ng-repeat='newsItem in newsCtrl.stories track by $index'>
+			<h3><a href='{{newsItem.data.url}}'>{{newsItem.data.title}}</a></h3>
+			<p ng-click="newsCtrl.selectUser(newsItem.data.by)">{{newsItem.data.by}}</p>
+			<div ng-if="newsItem.data.by === newsCtrl.selectedUser" ng-transclude></div>
 		</div>
 	</div>
 </div>

@@ -7,18 +7,27 @@ function newsStories() {
 			type: "@",
 			limit: "@"
 		},
+		transclude: true,
 		template: require('./news-stories.html'),
-		link: function(scope, el, attrs){
-				
-		},
 		controller: ["$scope", 'NewsService', "$attrs", function($scope, NewsService, attrs) {
-			$scope.$watch('type', function(newVal){
+			$scope.newsCtrl.stories = [];
+			$scope.newsCtrl.selectedUser = "";
+
+			$scope.$watch('newsCtrl.type', function(newVal){
 				NewsService[newVal]()
 					.then(storyIds => NewsService.getStories.call(NewsService, storyIds, $scope.limit))
-					.then(stories => $scope.news.stories = stories);
-			})
+					.then(stories => {
+						$scope.newsCtrl.stories = stories
+					});
+			});
+
+			$scope.newsCtrl.selectUser = function(user) {
+				if($scope.newsCtrl.selectedUser === user) return $scope.newsCtrl.selectedUser = "";
+				$scope.newsCtrl.selectedUser = user;
+			}
 		}],
-		controllerAs: 'news'
+		controllerAs: 'newsCtrl',
+		bindToController: true
 	}
 }
 export default angular.module('directives.newsStories', [])

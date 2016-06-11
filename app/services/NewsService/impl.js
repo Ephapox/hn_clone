@@ -1,6 +1,7 @@
 const askStoriesUrl = "https://hacker-news.firebaseio.com/v0/askstories.json?print=pretty";
 const topStoriesUrl = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
 const storyUrl = "https://hacker-news.firebaseio.com/v0/item/";
+const userUrl = "https://hacker-news.firebaseio.com/v0/user/";
 let askStories = [];
 
 export default class NewsService {
@@ -18,13 +19,16 @@ export default class NewsService {
 		const that = this;
 		const promiseArray = storyIds.data
 				.filter((id, idx) => {
-					if(idx > limit) return false;
+					if(idx >= limit) return false;
 					return true;
 				})
 				.map(id => {
 					return that.$http.get(`${storyUrl + id}.json`)
 				});
 		return Promise.all(promiseArray);
+	}
+	getUser(user) {
+		return this.$http.get(`${userUrl + user}.json`);
 	}
 }
 
