@@ -1,4 +1,3 @@
-
 function newsStories() {
 	return {
 		restrict: 'E',
@@ -11,12 +10,15 @@ function newsStories() {
 		controller: ["$scope", 'NewsService', "$attrs", function($scope, NewsService, attrs) {
 			$scope.newsCtrl.stories = [];
 			$scope.newsCtrl.selectedUser = "";
+			$scope.newsCtrl.loading = true;
 
 			$scope.$watch('newsCtrl.type', function(newVal){
+				$scope.newsCtrl.loading = true;
 				NewsService[newVal]()
 					.then(storyIds => NewsService.getStories.call(NewsService, storyIds, $scope.limit))
 					.then(stories => {
 						$scope.newsCtrl.stories = stories
+						$scope.newsCtrl.loading = false;
 					});
 			});
 

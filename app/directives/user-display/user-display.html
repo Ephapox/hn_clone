@@ -1,4 +1,7 @@
 <div>
-	<p>username: {{display.user.id}}</p>
-	<p>karma: {{display.user.karma.toString()}}</p>
+	<div ng-show='display.loading'>Loading...</div>
+	<div ng-show='!display.loading'>	
+		<p>username: {{display.user.id}}</p>
+		<p>karma: {{display.user.karma.toString()}}</p>
+	</div>
 </div>

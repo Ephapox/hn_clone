@@ -12,8 +12,12 @@ function userDisplay(NewsService) {
 		controller: ['$scope', function($scope){
 		}],
 		link: function(scope, el, attrs, parent) {
+			scope.display.loading = true;
 			NewsService.getUser(parent.selectedUser)
-				.then(user => scope.display.user = user.data);
+				.then(user => {
+					scope.display.user = user.data
+					scope.display.loading = false;
+				});
 		},
 		controllerAs: 'display',
 		bindToController: true

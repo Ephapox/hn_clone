@@ -1,4 +1,5 @@
-<div>
+<div ng-show='newsCtrl.loading'>Loading...</div>
+<div ng-show='!newsCtrl.loading'>
 	<div class="news_stories_contianer">
 		<div class="news_story" ng-repeat='newsItem in newsCtrl.stories track by $index'>
 			<h3><a href='{{newsItem.data.url}}'>{{newsItem.data.title}}</a></h3>
