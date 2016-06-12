@@ -1,4 +1,5 @@
 import configs from './app.config.js'; 
+import globalStyles from './index.sass'
 
 import home from './home';
 
