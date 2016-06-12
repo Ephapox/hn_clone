@@ -1,19 +1,20 @@
-const askStoriesUrl = "https://hacker-news.firebaseio.com/v0/askstories.json?print=pretty";
-const topStoriesUrl = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
+import hn from './NewsServiceData'; 
+
 const storyUrl = "https://hacker-news.firebaseio.com/v0/item/";
 const userUrl = "https://hacker-news.firebaseio.com/v0/user/";
-let askStories = [];
+
+let urlFormatter = (base, version, type, typeReplace, versionReplace) => {
+	return base.replace(versionReplace, version).replace(typeReplace, type);	
+} 
 
 export default class NewsService {
 	constructor($http) {
 		this.$http = $http;
 	}
 	
-	getAskStoryIds() {
-		return this.$http.get(askStoriesUrl);
-	}
-	getTopStoryIds() {
-		return this.$http.get(topStoriesUrl);
+	getIds(type) {
+		let url = urlFormatter(hn.baseUrl, hn.version, hn.type[type], '$TYPE$', '$VERSION$');
+		return this.$http.get(url);
 	}
 	getStories(storyIds, limit = 5) {
 		const that = this;

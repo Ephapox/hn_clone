@@ -14,8 +14,8 @@ function newsStories() {
 
 			$scope.$watch('newsCtrl.type', function(newVal){
 				$scope.newsCtrl.loading = true;
-				NewsService[newVal]()
-					.then(storyIds => NewsService.getStories.call(NewsService, storyIds, $scope.limit))
+				NewsService.getIds(newVal)
+					.then(storyIds => NewsService.getStories.call(NewsService, storyIds, $scope.newsCtrl.limit))
 					.then(stories => {
 						$scope.newsCtrl.stories = stories
 						$scope.newsCtrl.loading = false;

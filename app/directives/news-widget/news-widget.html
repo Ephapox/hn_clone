@@ -1,3 +1,12 @@
-<news-stories type="{{widgetCtrl.type}}" limit="{{widgetCtrl.limit}}">
-	<user-display user=""></user-display>
-</news-stories>
+<div class='widget-wrapper'>
+	<div class="select-wrapper">
+		<div class="selection" ng-click='widgetCtrl.selectMode(select.value)' ng-class='{selected: select.value === widgetCtrl.storyMode}' id='{{select.id}}' ng-repeat='select in widgetCtrl.selections'>
+			<p>{{select.name}}</p>
+		</div>
+	</div>
+	<div class='news-stories-wrapper'>
+		<news-stories type={{widgetCtrl.storyMode}} limit="10">
+			<user-display user="widgetCtrl.user"></user-display>
+		</news-stories>
+	</div>
+</div>
