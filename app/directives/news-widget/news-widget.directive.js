@@ -4,7 +4,7 @@ import styles from './news-widget.sass';
 
 const widgetData = [
 	{
-		name: "Top Stories",
+		name: "Top",
 		id: "top-stories",
 		value: "top"
 	},
@@ -14,12 +14,12 @@ const widgetData = [
 		value: "ask"
 	},
 	{
-		name: "New Stories",
+		name: "New",
 		id: "new-stories",
 		value: "new"
 	},
 	{
-		name: "Best Stories",
+		name: "Best",
 		id: "best-stories",
 		value: "best"
 	},
