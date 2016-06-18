@@ -4,6 +4,7 @@ var webpack = require('webpack');
 var validate = require('webpack-validator');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 var PATHS = {
 	app: path.join(__dirname, 'app', 'app.js'),
@@ -17,8 +18,8 @@ module.exports = validate({
 	},
 	output: {
 		path: PATHS.build,
-		publicPath: PATHS.assets,
-		filename: '[name].js'
+		filename: '[name].js',
+		publicPath: PATHS.assets
 	},
 	module: {
 		loaders: [
@@ -46,7 +47,11 @@ module.exports = validate({
 		new ExtractTextPlugin('styles.css'),
 		new HtmlWebpackPlugin({
 			title: 'Hello World',
-			template: path.join(__dirname, 'app', 'index.html')
+			template: path.join(__dirname, 'app', 'index.html'),
+			inject: false
+		}),
+		new CleanWebpackPlugin(['app/build'], {
+			root: process.cwd()
 		})
 	],
 	resolve: {

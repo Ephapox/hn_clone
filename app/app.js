@@ -1,5 +1,6 @@
+import angular from 'angular';
+import ui_router from 'angular-ui-router';
 import configs from './app.config.js'; 
-import globalStyles from './index.sass'
 
 import home from './home';
 
