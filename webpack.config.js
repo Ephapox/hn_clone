@@ -1,20 +1,23 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var ENTRY_PATH = path.resolve('./app');
-var BUILD_PATH = path.resolve('./app/build');
-var PUBLIC_PATH = '/build/';
+var validate = require('webpack-validator');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-	context: ENTRY_PATH,
+var PATHS = {
+	app: path.join(__dirname, 'app', 'app.js'),
+	build: path.join(__dirname, 'app', 'build'),
+	assets: '/assets/'
+}
+
+module.exports = validate({
 	entry: {
-		angular: 'angular',
-		app: './app',
-		'angular-ui-router': 'angular-ui-router'
+		app: PATHS.app,
 	},
 	output: {
-		path: BUILD_PATH,
-		publicPath: PUBLIC_PATH,
+		path: PATHS.build,
+		publicPath: PATHS.assets,
 		filename: '[name].js'
 	},
 	module: {
@@ -35,14 +38,18 @@ module.exports = {
 			{
 				test: /\.sass$/,
 				exclude: /node_modules/,
-				loader: 'style-loader!css-loader!sass-loader'
+				loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
 			}
 		]
 	},
 	plugins: [
-		new webpack.HotModuleReplacementPlugin()
+		new ExtractTextPlugin('styles.css'),
+		new HtmlWebpackPlugin({
+			title: 'Hello World',
+			template: path.join(__dirname, 'app', 'index.html')
+		})
 	],
 	resolve: {
 		extensions: ['', '.js']
 	}
-}
+})
