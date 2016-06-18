@@ -1,13 +1,1 @@
-<div>
-	<form>
-		<label for="top">Top Stories</label>
-		<input type="radio" name='stories' id='top' value='getTopStoryIds' ng-model='home.storyMode'>
-		<label for="ask">Ask Stories</label>
-		<input type="radio" name='stories' id='ask' value='getAskStoryIds' ng-model='home.storyMode'>
-	</form>
-</div>
-<div>
-	<news-stories type={{home.storyMode}} limit="3">
-		<user-display user="home.user"></user-display>
-	</news-stories>
-</div>
+<news-widget></news-widget>
